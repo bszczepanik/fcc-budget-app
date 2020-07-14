@@ -50,6 +50,28 @@ class Category:
 
 
 def create_spend_chart(categories):
-    chart = ""
+    percent_list = list(range(100, -1, -10))
+    spended_list = list(map(spended_money, categories))
+    spended_percent = [x/sum(spended_list) for x in spended_list]
 
-    return chart
+    print("spended_list", spended_list)
+    print("spended_percent", spended_percent)
+    lines = []
+
+    for item in percent_list:
+        item_str = str(item)
+        line = " " * (3 - len(item_str)) \
+            + item_str + "| "
+        line += "\n"
+        lines.append(line)
+
+    return "".join(lines)
+
+
+def spended_money(x):
+    result = 0
+
+    for item in x.value_list:
+        if float(item) < 0:
+            result += float(item)
+    return result
