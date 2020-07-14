@@ -10,20 +10,15 @@ class Category:
         line_width = 30
         lines = []
 
-        lines.append("")
-        lines[0] += "*" * int((line_width - name_width)/2)
-
-        lines[0] += self.name
-        i = len(lines[0])
-
-        while i < line_width:
-            lines[0] += "*"
-            i += 1
-        lines[0] += "\n"
+        # Heading
+        line = "*" * int((line_width - name_width)/2) \
+            + self.name
+        line += "*" * (line_width - len(line)) \
+            + "\n"
+        lines.append(line)
 
         for i in range(len(self.value_list)):
             line = self.op_list[i][:23]
-
             line += " " * \
                 (line_width - len(line) - len(self.value_list[i]))
             line += (self.value_list[i])
