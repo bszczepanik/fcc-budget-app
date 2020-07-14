@@ -17,6 +17,7 @@ class Category:
             + "\n"
         lines.append(line)
 
+        # Operation list loop
         for i in range(len(self.value_list)):
             line = self.op_list[i][:23]
             line += " " * \
@@ -25,6 +26,7 @@ class Category:
             line += "\n"
             lines.append(line)
 
+        # Summary
         lines.append("Total: %.2f" % (self.value))
 
         return "".join(lines)
